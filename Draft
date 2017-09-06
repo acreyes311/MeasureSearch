@@ -1,0 +1,224 @@
+#include <iostream>
+#include <cmath>
+#include <ctime>
+#include <random>
+#include <string>
+#include <fstream>
+
+clock_t start;
+clock_t end;
+
+
+using namespace std;
+
+
+int LinearSearch(int numbers[], int numbersSize, int key) {
+	start = clock();
+
+
+	int i = 0;
+	for (i = 0; i < numbersSize; i++) {
+		if (numbers[i] == key) {
+			int end = clock();
+			// cout << "Time Elapsed: " << end - start << endl;
+			return i;
+		}
+	}
+	int end = clock(); // cout << "Time Elapsed: " << end - start << endl;
+	return -1; /* not found */
+}
+
+int LinearSearchNames(string names[], int numbersSize, string key) {
+	start = clock();
+
+
+	int i = 0;
+	for (i = 0; i < numbersSize; i++) {
+		if (names[i] == key) {
+			int end = clock();
+			// cout << "Time Elapsed: " << end - start << endl;
+			return i;
+		}
+	}
+	int end = clock(); // cout << "Time Elapsed: " << end - start << endl;
+	return -1; /* not found */
+}
+
+
+void LinearMatch(int arrayNum[], int arraySize, int numMatch) {
+	int matches = 0;
+	for (int ii = 0; ii < arraySize; ii++) {
+		if (arrayNum[ii] == numMatch) matches++;
+	}
+	// cout << "Number of instances in array matching " << numMatch << ": " << matches << endl;
+}
+
+
+void BubbleSort(int arrayNum[], int arraySize) {
+	int temp; start = clock();
+	for (int b = 0; b < arraySize; b++) {
+		for (int bb = 0; bb < arraySize - 1; bb++) {
+			if (arrayNum[bb] > arrayNum[bb + 1]) {
+				temp = arrayNum[bb];
+				arrayNum[bb] = arrayNum[bb + 1];
+				arrayNum[bb + 1] = temp;
+			}
+		}
+	}
+	int end = clock(); // cout << "Time Elapsed: " << end - start << endl;
+}
+void BubbleIndexSort(int index[], int arrayNum[], int arraySize) {
+	int temp; start = clock();
+	for (int b = 0; b < arraySize; b++) {
+		for (int bb = 0; bb < arraySize - 1; bb++) {
+			if (arrayNum[index[bb]] > arrayNum[index[bb + 1]]) {
+				temp = index[bb];
+				index[bb] = index[bb + 1];
+				index[bb + 1] = temp;
+			}
+		}
+	}
+	int end = clock(); // cout << "INDEXED Time Elapsed: " << end - start << endl;
+}
+
+
+void NamesIndexSort(int indexNames[], string arrayNumNames[], int arraySizeNames) {
+	int temp;
+	int start = clock();
+	for (int b = 0; b < arraySizeNames; b++) {
+		for (int bb = 0; bb < arraySizeNames - 1; bb++) {
+			if (arrayNumNames[indexNames[bb]] > arrayNumNames[indexNames[bb + 1]]) {
+				temp = indexNames[bb];
+				indexNames[bb] = indexNames[bb + 1];
+				indexNames[bb + 1] = temp;
+			}
+			//Use the start and end like this
+			//sort(arrayNumNames, arrayNumNames + arraySizeNames);
+		}
+	}
+	int end = clock();
+	// cout << "INDEXED Time Elapsed: " << end - start << endl;
+}
+
+
+void NameListImport(string arrayNumNames[], int arraySizeNames) {
+
+	// cout << " I am in NameListImport" << endl;
+	// use "\" to escape special characters
+	ifstream namesFile("C:\\temp\\names.txt");
+	if (namesFile.is_open()) {
+		// cout << " I just opened a file, about to read" << endl;
+		for (int i = 0; i < arraySizeNames; ++i) {
+			namesFile >> arrayNumNames[i];
+			// cout << "just read [i]=" << arrayNumNames[i] << endl;
+		}
+	}
+
+
+}
+
+
+int main()
+{
+	/* Program #1: Create an index */
+	const int arraySize = 6;
+	int arrayNum[arraySize];
+	int keyIndex;
+	int index[arraySize];
+	for (int i = 0; i < arraySize; i++)
+		index[i] = i;
+
+
+	/* Program #3: Sort Names */
+	const int arraySizeNames =   5000;
+	string arrayNumNames[arraySizeNames];
+	int indexNames[arraySizeNames];
+	for (int i = 0; i < arraySizeNames; i++)
+		indexNames[i] = i;
+
+	/*
+
+
+	for (int i = 0; i < arraySize; i++) { arrayNum[i] = rand() % 2000; }
+	// cout << "An array has been created of 1000 values.\nFirst number in array is " << arrayNum[0] << endl;
+
+
+	int numMatch = 41;
+	LinearMatch(arrayNum, arraySize, numMatch); // cout << endl;
+
+
+	// cout << "Enter a number between 0 and 2000: "; cin >> numMatch;
+
+
+	keyIndex = LinearSearch(arrayNum, arraySize, numMatch);
+	if (keyIndex == -1) {
+		// cout << numMatch << " was not found." << endl;
+	}
+	else {
+		// cout << "Found " << numMatch << " at index " << keyIndex << "." << endl;
+	}
+	system("pause"); // cout << endl;
+
+
+
+
+	// cout << "Bubble Sorting - Pre-Swap:\n";
+	for (int i = 0; i < arraySize; i++) { // cout << arrayNum[i] << " "; } // cout << "\n\n";
+
+
+	// cout << "Bubble Sorting - Post-Swap:\n";
+	BubbleIndexSort(index, arrayNum, arraySize);
+	for (int i = 0; i < arraySize; i++) { // cout << arrayNum[index[i]] << " "; } // cout << "\n\n";
+
+
+	// cout << "Bubble sort, just to show that the original data was not moved." << endl;
+	for (int i = 0; i < arraySize; i++) { // cout << arrayNum[i] << " "; } // cout << "\n\n";
+
+
+	*/
+
+	/* Program #3: Sort Names */
+	// cout << "Names Sorting\n";
+	NameListImport(arrayNumNames, arraySizeNames);
+	// cout << "size=" << arraySizeNames << endl;
+
+	// cout << arrayNumNames[0] << " "  << arrayNumNames[1] << endl;
+
+	for (int i = 0; i < arraySizeNames; i++) {
+		// cout << arrayNumNames[i] << " ";
+	}
+	// cout << "DONE, Names Import" << endl;
+	system("PAUSE");
+
+	// cout << "\n\n" << endl;
+	clock_t beg, end;
+
+	beg = clock();
+
+	NamesIndexSort(indexNames, arrayNumNames, arraySizeNames);
+	// cout << "DONE Index Sort" << endl;
+	for (int i = 0; i < arraySizeNames; i++) {
+		// cout << arrayNumNames[indexNames[i]] << " ";
+	}
+	end = clock();
+	cout << "Bubble sort times=" << end - beg << "msec" << endl;
+
+	// cout << "\n\n" << endl;
+
+	cout << "Now do linear search" << endl;
+	beg = clock();
+	string word1 = arrayNumNames[499];
+	int ind = LinearSearchNames(arrayNumNames, arraySizeNames, word1);
+	end = clock();
+	cout << "Linear search for" << word1 << " " << end - beg << "msec" << endl;
+
+	beg = clock();
+	word1 = arrayNumNames[999];
+	ind = LinearSearchNames(arrayNumNames, arraySizeNames, word1);
+	end = clock();
+	cout << "Linear search forword1=" << word1 << " " << end - beg << "msec" << endl;
+	cout << "it should be index=499, " << ind << endl;
+	system("PAUSE");
+
+	return 0;
+}
